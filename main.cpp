@@ -57,28 +57,32 @@ int main()
         std::cout << element.first << " " << element.second.fa << " " << element.second.fi << std::endl;
     }
 
-    auto customContainer = custom_container<hard>{};
+    auto customContainer = custom_container<int, hard>{};
 
     for( auto i = 0; i < 10; i++ )
     {
-        customContainer.emplace_back(factorial(i), fibonacci(i));
+        customContainer.emplace(std::piecewise_construct,
+                                std::forward_as_tuple(i),
+                                std::forward_as_tuple(factorial(i), fibonacci(i)));
     }
 
     for(const auto& element : customContainer)
     {
-        std::cout << element.fa << " " << element.fi << std::endl;
+        std::cout << element.first << " " << element.second.fa << " " << element.second.fi << std::endl;
     }
 
-    auto customContainerAllocator = custom_container<hard, custom_allocator<hard, 10> >{};
+    auto customContainerAllocator = custom_container<int, hard, custom_allocator<hard, 10> >{};
 
     for( auto i = 0; i < 10; i++ )
     {
-        customContainerAllocator.emplace_back(factorial(i), fibonacci(i));
+        customContainerAllocator.emplace(std::piecewise_construct,
+                                std::forward_as_tuple(i),
+                                std::forward_as_tuple(factorial(i), fibonacci(i)));
     }
 
     for(const auto& element : customContainerAllocator)
     {
-        std::cout << element.fa << " " << element.fi << std::endl;
+        std::cout << element.first << " " << element.second.fa << " " << element.second.fi << std::endl;
     }
 
     return 0;
