@@ -16,9 +16,9 @@ public:
     ~custom_container() = default;
 
     template< typename... Args >
-    void emplace_back( Args &&...args )
+    auto& emplace_back( Args &&...args )
     {
-         m_Container.emplace_back(std::forward<Args>(args)...);
+        return m_Container.emplace_back(std::forward<Args>(args)...);
     }
 
     auto begin() const

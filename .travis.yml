@@ -1,6 +1,6 @@
 dist: xenial
 language: cpp
-compiler: clang
+compiler: gcc
 script:
   - cmake .
   - cmake --build .

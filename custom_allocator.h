@@ -20,7 +20,6 @@ public:
         if(m_Counter == 0)
         {
             p = std::malloc(reserveCount * sizeof(T));
-            std::cout << "allocate" << std::endl;
 
             if (!p)
             {
@@ -51,7 +50,6 @@ public:
             for(const auto& element : m_Pointers)
             {
                 std::free(element);
-                std::cout << "deallocate" << std::endl;
             }
 
             m_Pointers.clear();
