@@ -3,8 +3,6 @@ project(allocator VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 set(CMAKE_CXX_STANDARD 17)
 
-find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-
 add_executable(allocator custom_allocator.h custom_container.h)
 target_sources(allocator PRIVATE
         main.cpp
