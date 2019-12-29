@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 project(allocator VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
 add_executable(allocator custom_allocator.h custom_container.h)
 target_sources(allocator PRIVATE
@@ -21,3 +21,4 @@ set(CPACK_PACKAGE_CONTACT tnovits@yandex.ru)
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 
 include(CPack)
+

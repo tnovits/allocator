@@ -68,18 +68,18 @@ int main()
     {
         std::cout << element.fa << " " << element.fi << std::endl;
     }
-
-    auto customContainerAllocator = custom_container<hard, custom_allocator<hard, 10> >{};
-
-    for( auto i = 0; i < 10; i++ )
-    {
-        customContainerAllocator.emplace_back(factorial(i), fibonacci(i));
-    }
-
-    for(const auto& element : customContainerAllocator)
-    {
-        std::cout << element.fa << " " << element.fi << std::endl;
-    }
+//
+//    auto customContainerAllocator = custom_container<hard, custom_allocator<hard, 10> >{};
+//
+//    for( auto i = 0; i < 10; i++ )
+//    {
+//        customContainerAllocator.emplace_back(factorial(i), fibonacci(i));
+//    }
+//
+//    for(const auto& element : customContainerAllocator)
+//    {
+//        std::cout << element.fa << " " << element.fi << std::endl;
+//    }
 
     return 0;
 }
