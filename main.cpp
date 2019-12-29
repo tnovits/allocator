@@ -27,8 +27,7 @@ constexpr  int fibonacci( int number )
     return (number == 0 || number == 1) ? 1 : fibonacci(number-1) + fibonacci(number - 2);
 }
 
-int
-main()
+int main()
 {
     auto map = std::map<int, hard>{};
 
