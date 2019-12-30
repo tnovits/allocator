@@ -7,9 +7,10 @@ class custom_allocator {
 public:
     using value_type = T;
     using pointer = T*;
-    using size_type = std::size_t;
     using const_pointer = const T*;
     using reference = T&;
+    using const_reference = const T&;
+    using size_type = std::size_t;
 
     template<typename U>
     struct rebind {
@@ -57,6 +58,15 @@ public:
             m_Pointers.clear();
         }
     };
+
+    template<typename U, typename ...Args>
+    void construct(U *p, Args &&...args) const {
+        new(p) U(std::forward<Args>(args)...);
+    };
+
+    void destroy(T *p) const {
+        p->~T();
+    }
 
 
 private:
