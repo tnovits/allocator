@@ -8,6 +8,8 @@ public:
     using value_type = T;
     using pointer = T*;
     using size_type = std::size_t;
+    using const_pointer = const T*;
+    using reference = T&;
 
     template<typename U>
     struct rebind {
