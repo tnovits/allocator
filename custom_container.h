@@ -1,24 +1,23 @@
 #pragma once
 
-#include <map>
+#include <list>
 
-template<typename U, typename T, class Allocator = std::allocator<T> >
+template<typename T, class Allocator = std::allocator<T> >
 class custom_container
 {
 public:
-    using key_type = U;
-    using mapped_type = T;
+    using value_type = T;
 
-    using Container = std::map<key_type, mapped_type, std::less<int>,Allocator>;
+    using Container = std::list<value_type, Allocator>;
 
 public:
     custom_container() = default;
     ~custom_container() = default;
 
     template< typename... Args >
-    void  emplace( Args &&...args )
+    void  emplace_back( Args &&...args )
     {
-        m_Container.emplace(std::forward<Args>(args)...);
+        m_Container.emplace_back(std::forward<Args>(args)...);
     }
 
     auto begin() const

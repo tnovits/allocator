@@ -11,8 +11,8 @@ struct hard {
     hard(int fa, int fi) : fa(fa), fi(fi) {};
 
     hard() = delete;
-    hard(const hard &) = delete;
-    hard(hard &&) noexcept = delete;
+ //   hard(const hard &) = delete;
+  //  hard(hard &&) noexcept = delete;
 
     ~hard() = default;
 };
@@ -57,32 +57,28 @@ int main()
         std::cout << element.first << " " << element.second.fa << " " << element.second.fi << std::endl;
     }
 
-    auto customContainer = custom_container<int, hard>{};
+    auto customContainer = custom_container<hard>{};
 
     for( auto i = 0; i < 10; i++ )
     {
-        customContainer.emplace(std::piecewise_construct,
-                                std::forward_as_tuple(i),
-                                std::forward_as_tuple(factorial(i), fibonacci(i)));
+        customContainer.emplace_back(factorial(i), fibonacci(i));
     }
 
     for(const auto& element : customContainer)
     {
-        std::cout << element.first << " " << element.second.fa << " " << element.second.fi << std::endl;
+        std::cout << element.fa << " " << element.fi << std::endl;
     }
 
-    auto customContainerAllocator = custom_container<int, hard, custom_allocator<hard, 10> >{};
+    auto customContainerAllocator = custom_container<hard, custom_allocator<hard, 10> >{};
 
     for( auto i = 0; i < 10; i++ )
     {
-        customContainerAllocator.emplace(std::piecewise_construct,
-                                std::forward_as_tuple(i),
-                                std::forward_as_tuple(factorial(i), fibonacci(i)));
+        customContainerAllocator.emplace_back(factorial(i), fibonacci(i));
     }
 
     for(const auto& element : customContainerAllocator)
     {
-        std::cout << element.first << " " << element.second.fa << " " << element.second.fi << std::endl;
+        std::cout << element.fa << " " << element.fi << std::endl;
     }
 
     return 0;
