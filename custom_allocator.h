@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <list>
 
 template<typename T, int reserveCount>
 class custom_allocator {
@@ -70,7 +70,7 @@ public:
 
 
 private:
-    using PointerList = std::vector<pointer>;
+    using PointerList = std::list<pointer>;
 
     int m_Counter = 0;
     int m_Number = 0;

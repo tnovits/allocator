@@ -8,11 +8,13 @@
 struct hard {
     int fa = 0;
     int fi = 0;
+    template< class Deleter, class Alloc >
+    hard(int fa, int fi, Deleter d, Alloc alloc) : hard(fa, fi) {};
     hard(int fa, int fi) : fa(fa), fi(fi) {};
 
     hard() = delete;
- //   hard(const hard &) = delete;
-  //  hard(hard &&) noexcept = delete;
+    hard(const hard &) = delete;
+    hard(hard &&) noexcept = delete;
 
     ~hard() = default;
 };
@@ -66,7 +68,7 @@ int main()
 
     for(const auto& element : customContainer)
     {
-        std::cout << element.fa << " " << element.fi << std::endl;
+        std::cout << element->fa << " " << element->fi << std::endl;
     }
 
     auto customContainerAllocator = custom_container<hard, custom_allocator<hard, 10> >{};
@@ -78,7 +80,7 @@ int main()
 
     for(const auto& element : customContainerAllocator)
     {
-        std::cout << element.fa << " " << element.fi << std::endl;
+        std::cout << element->fa << " " << element->fi << std::endl;
     }
 
     return 0;
